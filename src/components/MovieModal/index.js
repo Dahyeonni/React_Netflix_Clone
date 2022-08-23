@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./MovieModal.css";
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const movieTrailer = require( 'movie-trailer' );
 
@@ -14,7 +15,7 @@ function MovieModal({
     setModalOpen
 }) {
     const [tailerId, setTailerId] = useState("");
-
+    
     useEffect(() => {
         if (tailerId) {
             setTailerId("");
@@ -28,10 +29,12 @@ function MovieModal({
         }
     }, [])
     
+    const outSection = useRef();
+    useOnClickOutside(outSection,()=>{setModalOpen(false)});
     return (
         <div className="presentation">
             <div className='wrapper-modal'>
-                <div className='modal'>
+                <div className='modal' ref={outSection}>
                     <span
                         className='modal-close'
                         onClick={()=> setModalOpen(false)}
