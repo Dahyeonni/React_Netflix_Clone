@@ -1,2 +1,2 @@
 # Netfilx_React_CloneSession
-## React_Netflix_clone
+React_Netflix_clone
